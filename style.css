@@ -6,12 +6,11 @@
 
 body {
   background-color: rgb(32, 33, 39);
-  color: rgb(255, 255, 255);
 }
 
 .container {
   border: solid rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.168);
+  background-color: beige;
   padding: 30px;
   width: 700px;
   margin: 0 auto;
@@ -56,14 +55,13 @@ h1 {
 #pen {
   color: cadetblue;
 }
+#pen:hover {
+  background-color: rgba(0, 0, 0, 0.43);
+}
 
 .fa-check {
   margin-left: 5px;
   background-color: green;
-}
-
-#pen:hover {
-  background-color: rgba(255, 228, 196, 0.752);
 }
 
 .input-group {
@@ -74,14 +72,14 @@ h1 {
 .btn {
   padding: 5px;
   height: 30px;
-  border: solid green;
-  color: green;
+  border: solid cadetblue;
+  color: cadetblue;
   font-weight: bold;
   cursor: pointer;
 }
 
 .btn:hover {
-  background-color: green;
+  background-color: cadetblue;
   color: white;
 }
 
@@ -106,4 +104,17 @@ i {
   margin-right: 5px;
   border: solid 1px;
   padding: 5px;
+}
+
+.err-msg {
+  margin-top: 10px;
+  text-align: end;
+}
+
+.error-message {
+  padding: 5px;
+  border: solid 1px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 83, 83);
+  font-size: 14px;
 }

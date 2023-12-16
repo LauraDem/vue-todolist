@@ -26,7 +26,7 @@ createApp({
         done: false,
       },
       error: {
-        done: true,
+        done: false,
         show: false,
         message: "",
       },
@@ -35,8 +35,17 @@ createApp({
 
   methods: {
     addTodo() {
-      const newToDo = { ...this.newTask };
-      this.todoList.unshift(newToDo);
+      if (this.newTask.text.trim() !== "") {
+        const newToDo = { ...this.newTask };
+        this.todoList.unshift(newToDo);
+        this.newTask.text = ""; // Resetta l'input dopo l'aggiunta
+        this.error.show = false; // Nasconde il messaggio di errore
+      } else {
+        // Mostra un messaggio di errore se il testo è vuoto
+        this.error.done = true;
+        this.error.show = true;
+        this.error.message = "Il campo non può essere vuoto!!";
+      }
     },
 
     deleteTodo(index) {

@@ -42,9 +42,15 @@
               Aggiungi
             </button>
           </div>
+          <!-- Aggiungi questo span per mostrare il messaggio di errore -->
         </div>
 
         <hr />
+        <div class="err-msg">
+          <span v-if="error.show" class="error-message"
+            >{{ error.message }}</span
+          >
+        </div>
 
         <div class="list-container">
           <ul v-if="todoList.length" class="todo-list">
