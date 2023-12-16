@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue To Do List</title>
 
     <!-- FONT AW -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
 
     <!-- MY STYLE -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- VUE JS -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
     <!-- SCRIPT JS -->
     <script src="main.js" defer></script>
-
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="wrapper" id="app">
-        <div class="container">
-            
-            <div class="title">
-                
-            <h1>{{ title }}</h1>
+      <div class="container">
+        <div class="title">
+          <h1>{{ title }}</h1>
 
-        
+          <div class="input-group">
+            <input
+              type="text"
+              id="form-control"
+              placeholder="Scrivi quì le cose da fare"
+              v-model.trim="newTask.text"
+              @keyUp.enter="addTodo()"
+            />
 
-        <div class="input-group">
-            <input 
-            type="text" 
-            id="form-control"
-            placeholder="Scrivi quì le cose da fare"
-            v-model.trim="newTask.text"
-            @keyUp.enter="addTodo()">
-
-            <button 
-                class="btn " 
-                type="button" 
-                id="button-addon2" 
-                @click="addTodo()">Aggiungi
+            <button
+              class="btn"
+              type="button"
+              id="button-addon2"
+              @click="addTodo()"
+            >
+              Aggiungi
             </button>
           </div>
         </div>
 
-            <hr>
+        <hr />
 
-            
+        <div class="list-container">
+          <ul v-if="todoList.length" class="todo-list">
+            <li v-for="(todo, i) in todoList" class="todo-element">
+              <div :class="(todo.done) ? 'done-element' : '' ">
+                {{ todo.text }}
 
-            <div class="list-container">
+                <span v-if="todoList[i].done">
+                  <i class="fa-solid fa-check"></i>
+                </span>
+              </div>
 
-            <ul v-if="todoList.length" class="todo-list">
-                <li v-for="(todo, i) in todoList" class="todo-element">
-                    
-                    <span :class="(todo.done) ? 'done-element' : '' ">
-                        {{ todo.text }}
-                    </span>
+              <div class="icons">
+                <i
+                  class="fa-solid fa-circle-xmark"
+                  id="mark"
+                  @click="deleteTodo(i)"
+                ></i>
 
-                    <i class="fa-solid fa-circle-xmark"
-                        id="mark" @click="deleteTodo(i)"></i>
+                <i class="fa-solid fa-pen" id="pen" @click="lineThrough(i)"></i>
+              </div>
+            </li>
+          </ul>
 
-                </li>
-            </ul>
-
-            <h3 v-else>Non c'è niente da fare!</h3>
-
+          <h3 v-else>Non c'è niente da fare! 😎</h3>
         </div>
-                
-                
-            
-
-        </div>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>

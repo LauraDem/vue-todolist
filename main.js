@@ -1,55 +1,61 @@
 const { createApp } = Vue;
 
-  createApp({
+createApp({
+  data() {
+    return {
+      title: "To do list:",
 
-    data() {
-      return {
-        title: 'To do list:',
-
-        todoList:[
-          { text:'Fare la spesa',
-            done: true,
-          },
-          {
-            text:'Chiamare Mamma',
-            done: false,
-          },
-          {
-            text:'Mettere la lavatrice',
-            done: false,
-          },
-          {
-            text:'Caffè con Riccardo',  
-            done: false,
-          },                        
-        ],
-
-        newTask: {
-          text: '',
+      todoList: [
+        { text: "Fare la spesa", done: false },
+        {
+          text: "Chiamare Mamma",
           done: false,
         },
-        error: {
-          done: true,
-          show: false,
-          message: '',
+        {
+          text: "Mettere la lavatrice",
+          done: false,
         },
-      };
+        {
+          text: "Caffè con Riccardo",
+          done: false,
+        },
+      ],
+
+      newTask: {
+        text: "",
+        done: false,
+      },
+      error: {
+        done: true,
+        show: false,
+        message: "",
+      },
+    };
+  },
+
+  methods: {
+    addTodo() {
+      const newToDo = { ...this.newTask };
+      this.todoList.unshift(newToDo);
     },
 
+    deleteTodo(index) {
+      // Verifica che l'indice sia valido per evitare errori
+      if (index >= 0 && index < this.todoList.length) {
+        // Mostra un alert di conferma
+        const yesDelete = window.confirm(
+          "Sei sicuro di voler eliminare questo elemento?"
+        );
 
-    methods: {
-
-      addTodo() {
-
-        const newToDo = { ...this.newTask };
-        this.todoList.push(newToDo);     
-      },
-
-
-      deleteTodo(index) {
-        this.todoList.splice(index,1);
-      },
+        // Se l'utente conferma, elimina l'elemento
+        if (yesDelete) {
+          this.todoList.splice(index, 1);
+        }
+      }
     },
 
-
-  }).mount('#app');
+    lineThrough(index) {
+      this.todoList[index].done = !this.todoList[index].done;
+    },
+  },
+}).mount("#app");
