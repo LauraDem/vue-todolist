@@ -10,7 +10,7 @@ body {
 
 .container {
   border: solid rgb(0, 0, 0);
-  background-color: beige;
+  background-color: rgba(69, 69, 68, 0.852);
   padding: 30px;
   width: 700px;
   margin: 0 auto;
